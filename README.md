@@ -6,7 +6,7 @@ https://gpt-do.web.app/
 
 ## Demo Video
 
-https://github.com/kushaldevv/gpt-do/assets/67920321/2029bd66-1b57-4afe-b029-8e66ef3e7f7d
+https://github.com/kushaldevv/gpt-do/assets/67920321/3b94442c-cb55-4936-9f49-b4625a2f8fd9
 
 ## Tech Stack
 React, TS, ChakraUI, OpenAI, Firebase
