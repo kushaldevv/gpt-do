@@ -13,16 +13,26 @@ import { DeleteIcon } from '@chakra-ui/icons'
 type textProp = {
         text: string;
         index : number;
-
+        isDragging: boolean;
+        setList: React.Dispatch<React.SetStateAction<string[]>>;
+        toDoArray: string[];
 }
-export default function ToDoCard({ text, index }: textProp) {
+
+export default function ToDoCard({text, index, isDragging, toDoArray, setList}: textProp) {
+  
+  function handleDelete() {
+    const newList = [...toDoArray]; 
+    newList.splice(index - 1, 1); 
+    setList(newList); 
+  }
+
   return (
     <Center py={3}>
       <Box
         role={"group"}
         p={6}
         w={"375px"}
-        bg={useColorModeValue("white", "gray.600")}
+        bg={useColorModeValue( isDragging ? "gray.100" : "white", isDragging ? "gray.500" : "gray.600")}
         boxShadow={"2xl"}
         rounded={"lg"}
         pos={"relative"}
@@ -51,6 +61,7 @@ export default function ToDoCard({ text, index }: textProp) {
               bg: "red.500",
             }}
             alignSelf={'flex-end'}
+            onClick={() => handleDelete()}
           >
             <Icon as={DeleteIcon} boxSize={3} />
           </Button>

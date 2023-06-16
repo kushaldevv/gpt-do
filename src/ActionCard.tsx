@@ -3,20 +3,31 @@ import {
   Center,
   useColorModeValue,
   Heading,
-  Text,
   Stack,
   Button,
   Icon,
+  UnorderedList,
 } from "@chakra-ui/react";
-
 import { CheckIcon } from "@chakra-ui/icons";
-//       const IMAGE =
-//         'https://images.unsplash.com/photo-1518051870910-a46e30d9db16?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=80';
+import { Action } from './types';
+import parse from 'html-react-parser';
 
-export default function ActionCard() {
-  var prioirty = 1;
-  var title =
-    "Finish to-do application and commit to git. Then send email to recruiter.";
+type textProp = {
+  text: string;
+  steps: string;
+  index: number;
+  setActionList: React.Dispatch<React.SetStateAction<Action[]>>;
+  actionList: Action[];
+};
+
+export default function ActionCard({ text, steps, index, actionList, setActionList}: textProp) {
+
+  function handleDelete() {
+    const newList = [...actionList]; 
+    newList.splice(index - 1, 1); 
+    setActionList(newList); 
+  }
+
   return (
     <Center py={3}>
       <Box
@@ -29,10 +40,15 @@ export default function ActionCard() {
         pos={"relative"}
         zIndex={1}
       >
-        <Stack align={"center"}>
-          <Heading fontSize={"medium"} fontFamily={"body"} fontWeight={500}>
-            {title}
+        <Stack align={"flex-start"}>
+          <Heading fontSize={"lg"} fontFamily={"body"} fontWeight={700}>
+            {text}
           </Heading>
+          <UnorderedList>
+          <div style={{ fontWeight: 500 }}>
+          {parse(steps)}
+          </div>
+          </UnorderedList>
           <Button
             px={3}
             fontSize={"sm"}
@@ -49,6 +65,7 @@ export default function ActionCard() {
               bg: "green.500",
             }}
             alignSelf={"flex-end"}
+            onClick={handleDelete}
           >
             <Icon as={CheckIcon} boxSize={3.5} />
           </Button>
