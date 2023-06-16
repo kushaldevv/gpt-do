@@ -2,7 +2,7 @@
 To-DO Application that generates action steps for each to-do task.
 
 ## Demo link 
-[Wesbite]https://gpt-do.web.app/
+https://gpt-do.web.app/
 
 ## Demo Video
 
