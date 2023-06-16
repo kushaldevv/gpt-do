@@ -34,7 +34,6 @@ export const App = () => {
 
   async function requestSteps() {
     if (list.length !== 0){
-      console.log(list);
       var newActionList = []
       setLoading(true);
       for (const todo of list){
@@ -47,7 +46,6 @@ export const App = () => {
           frequency_penalty: 0.0,
           presence_penalty: 0.6,
         });
-        console.log(response)
         let responseText = response.data.choices[0].text
         if (responseText)
           newActionList.push({title: todo, steps: responseText})
